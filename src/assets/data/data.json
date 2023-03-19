@@ -1,0 +1,86 @@
+{
+    "sobremi": [
+        {
+            "name": "Gonzalo Jaquis",
+            "titulo": "Licenciado en Administración",
+            "backimage": "#",
+            "image": "#",
+            "company": "Hello World",
+            "profileimage": "https://th.bing.com/th/id/R.9c9d081d33b06dd88d9482396f43ff1d?rik=draXMij7w9aB3A&pid=ImgRaw&r=0"
+        }
+    ],
+    "education": [
+        {
+            "school": "Universidad Blas Pascal",
+            "title": "Ingenieria",
+            "img": "https://yt3.googleusercontent.com/ytc/AMLnZu98ytOlrAT8pxZgszrBDUeR_kDphvvdj00zFP93XA=s900-c-k-c0x00ffffff-no-rj",
+            "career": "Diplomatura en eCommerce",
+            "start":"Mayo 2020",
+            "end": "Diciembre 2020"
+        },
+        {
+            "school": "Universidad Nacional de Río Negro - Sede Andina",
+            "img": "https://th.bing.com/th/id/R.48cdab0308f6633105400cd040ef3216?rik=qgFWfefkABzPxg&pid=ImgRaw&r=0",
+            "career": "Licenciatura en Administración",
+            "start":"2012",
+            "end": "2019"
+        },
+        {
+            "school": "Universidad Nacional de Río Negro - Sede Andina",
+            "img": "https://th.bing.com/th/id/R.48cdab0308f6633105400cd040ef3216?rik=qgFWfefkABzPxg&pid=ImgRaw&r=0",
+            "career": "Tecnicatura en Economía",
+            "start":"2016",
+            "end": "2019"
+        }
+    ],
+    "experiencia": [
+        {
+            "position": "Relacionista de Empresas",
+            "company": "Dirección de Trabajo Municipal",
+            "img": "https://th.bing.com/th/id/R.99d17e2f3133a5c71f8026ce22443a05?rik=KdTw4RwqpnPAuw&pid=ImgRaw&r=0",
+            "start": "2016",
+            "end": "Actualmente",
+            "description": "Asesoramiento a empresas e instituciones sobre servicios de búsqueda de nuevo personal y beneficios económicos del Ministerio de Trabajo."
+        },
+        {
+            "position": "Capacitador",
+            "company": "Instituto Nacional de Administración Pública",
+            "start": "2022",
+            "img":"https://th.bing.com/th/id/R.06a2f82c3bc2ae7095cbb6e151d438a6?rik=ugMdH1ZJLhmtMA&pid=ImgRaw&r=0",
+            "end": "Actualmente",
+            "description": "Dictado de talleres. Confección de material. Correción de prácticos y examenes. Gestión de campus en Moodle."
+        },
+        {
+            "position": "Tutor Virtual de Licenciatura en Administración",
+            "company": "Universidad Nacional de Río Negro - Sede Andina",
+            "img": "https://th.bing.com/th/id/R.48cdab0308f6633105400cd040ef3216?rik=qgFWfefkABzPxg&pid=ImgRaw&r=0",
+            "start": "2020",
+            "end": "2021",
+            "description": "Acompañamiento a alumnos. Soporte y Asistencia con clases virtuales (Campus Bimodal, Gmail, Google Meet, etc.). Comunicaciones oficiales. Elaboración de informes. Solución efectiva de consultas vía mail y campus."
+        },
+        {
+            "position": "Coordinador del Programa 111mil",
+            "company": "Centro de Formación y Capacitación Municipal",
+            "img": "https://th.bing.com/th/id/R.99d17e2f3133a5c71f8026ce22443a05?rik=KdTw4RwqpnPAuw&pid=ImgRaw&r=0",
+            "start": "2019",
+            "end": "2020",
+            "description": "Coordinación de espacios, profesores y alumnos asistentes al curso. Entrega de materiales. Seguimiento de alumnos y contenidos dictados."
+        },
+        {
+            "position": "Ayudante de Alumnos en Matemática para Economistas",
+            "company": "Universidad Nacional de Río Negro - Sede Andina",
+            "img":"https://th.bing.com/th/id/R.48cdab0308f6633105400cd040ef3216?rik=qgFWfefkABzPxg&pid=ImgRaw&r=0",
+            "start": "2019",
+            "end": "2020",
+            "description": "Presentación de ejercicios. Acompañamiento en resolución de trabajos prácticos. Atención a dudas y consultas."
+        },
+        {
+            "position": "Capacitador",
+            "company": "Fundación OSDE",
+            "img": "https://th.bing.com/th/id/R.b51aa88920bae57fb94a47ae1adb5b73?rik=3kvxtRHs51hr3Q&pid=ImgRaw&r=0",
+            "start": "Diciembre 2018",
+            "end": "-",
+            "description": "Clase sobre mercado laboral, CV y entrevista para cuidadores domiciliarios."
+        }
+    ]
+}

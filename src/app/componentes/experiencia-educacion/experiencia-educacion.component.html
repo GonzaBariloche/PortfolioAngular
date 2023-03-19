@@ -1,0 +1,39 @@
+<div class="col-sm-7">
+
+  <p class="container h2"><strong>EXPERIENCIA LABORAL</strong></p> 
+  <p class="container h2"><strong>   </strong></p> 
+
+  <div *ngFor="let experiencia of experienciaList" class="row">
+    <div class="col-sm-3">
+      <div class="well" style="text-align: center;">
+        <p><strong>{{experiencia.position}}</strong></p>
+       <img src="{{experiencia.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="well">
+        <p><strong>{{experiencia.company}}</strong></p>
+        <p>{{experiencia.start}} - {{experiencia.end}}</p>
+        <p>{{experiencia.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="container h2"><strong>EDUCACIÓN</strong></p> 
+  <p class="container h2"><strong>   </strong></p> 
+
+    <div *ngFor="let educacion of educacionList" class="row">
+      <div class="col-sm-3">
+        <div class="well" style="text-align: center;">
+          <p><strong>{{educacion.career}}</strong></p>
+         <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="well">
+          <p><strong>{{educacion.career}}</strong></p>
+          <p>{{educacion.start}}- {{educacion.end}}</p>
+          <p>{{educacion.description}}</p>
+        </div>
+      </div>
+    </div>
