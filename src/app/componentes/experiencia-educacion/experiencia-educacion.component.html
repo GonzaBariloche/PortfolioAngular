@@ -6,13 +6,13 @@
   <div *ngFor="let experiencia of experienciaList" class="row">
     <div class="col-sm-3">
       <div class="well" style="text-align: center;">
-        <p><strong>{{experiencia.position}}</strong></p>
+        <p><strong>{{experiencia.company}}</strong></p>
        <img src="{{experiencia.img}}" class="img-circle" height="55" width="55" alt="Avatar">
       </div>
     </div>
     <div class="col-sm-9">
       <div class="well">
-        <p><strong>{{experiencia.company}}</strong></p>
+        <p><strong>{{experiencia.position}}</strong></p>
         <p>{{experiencia.start}} - {{experiencia.end}}</p>
         <p>{{experiencia.description}}</p>
       </div>
@@ -25,7 +25,7 @@
     <div *ngFor="let educacion of educacionList" class="row">
       <div class="col-sm-3">
         <div class="well" style="text-align: center;">
-          <p><strong>{{educacion.career}}</strong></p>
+          <p><strong>{{educacion.school}}</strong></p>
          <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
         </div>
       </div>
