@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/servicios/user.service'
+import { Router } from "@angular/router";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Component({
   selector: 'app-register',
@@ -8,28 +10,22 @@ import { UserService } from 'src/app/servicios/user.service'
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  email: string = "";
+  password: string = "";
 
-  formReg: FormGroup;
+  constructor(private router: Router, private afAuth: AngularFireAuth) {}
 
-  constructor(
-    private userService: UserService
-  ) {
-    this.formReg = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-      })
+  ngOnInit(): void {}
+
+  async register() {
+    try {
+      const result = await this.afAuth.createUserWithEmailAndPassword(
+        this.email,
+        this.password
+      );
+      this.router.navigate(["/dashboard"]);
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-ngOnInit(): void {
-
-}
-
-  onSubmit(){
-    this.userService.register(this.formReg.value)
-    .then(response => {
-      console.log(response);
-    })
-    .catch(error=>console.log(error))
-  }
-
 }

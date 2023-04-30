@@ -8,22 +8,35 @@ import { AutenticacionService } from 'src/app/servicios/autenticacion.service';
   templateUrl: './iniciar-sesion.component.html',
   styleUrls: ['./iniciar-sesion.component.css']
 })
+
 export class IniciarSesionComponent implements OnInit {
-  form:FormGroup;
+  email: string;
+  password: string;
+  loginEmail: string;
+  loginPassword: string;
 
-  constructor(private formBuilder:FormBuilder, private autenticacionService:AutenticacionService, private ruta:Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.form=this.formBuilder.group({
-        email:['',[Validators.required, Validators.email]],
-        password:['',[Validators.required, Validators.minLength(8)]],
-        deviceInfo:this.formBuilder.group({
-          deviceId: ["17867868768"],
-          deviceType: ["DEVICE_TYPE_ANDROID"],
-          notificationToken:["67657575eececc34"]
-        
-      })
-  });
-}
+      email:['',[Validators.required, Validators.email]],
+      password:['',[Validators.required, Validators.minLength(8)]],
+      deviceInfo:this.formBuilder.group({
+        deviceId: ["17867868768"],
+        deviceType: ["DEVICE_TYPE_ANDROID"],
+        notificationToken:["67657575eececc34"]
+      
+    })
+  }
 
+  // ...
+  }}
+
+login() {
+  this.authService.signInWithEmailAndPassword(this.loginEmail, this.loginPassword)
+    .then(() => {
+      this.router.navigate(['/']);
+    })
+    .catch(error => console.log(error));
+}
 
   ngOnInit(): void {
   }

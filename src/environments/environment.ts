@@ -1,4 +1,6 @@
-const firebaseConfig = {
+export const environment = {
+  production: false,
+  firebase: {
     apiKey: "AIzaSyAHOofU0wLUetw_L518gq6J0BqBCiUqIMA",
     authDomain: "portfolio-dc0aa.firebaseapp.com",
     projectId: "portfolio-dc0aa",
@@ -6,4 +8,5 @@ const firebaseConfig = {
     messagingSenderId: "701689608352",
     appId: "1:701689608352:web:fc276bd77cbfdcf1fe31c5",
     measurementId: "G-MB4FGHSSCP"
-  };
+  },
+};
