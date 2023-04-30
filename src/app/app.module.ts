@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module'; // Agregamos esta línea
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { ExperienciaEducacionComponent } from './componentes/experiencia-educaci
 import {HttpClientModule} from '@angular/common/http';
 import { IniciarSesionComponent } from './componentes/iniciar-sesion/iniciar-sesion.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +21,15 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
     AcercaDeComponent,
     ExperienciaEducacionComponent,
     IniciarSesionComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule,
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
