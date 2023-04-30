@@ -22,6 +22,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from "./register/register.component"
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DashboardComponent } from "./dashboard/dashboard.component";
     AcercaDeComponent,
     ExperienciaEducacionComponent,
     IniciarSesionComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
