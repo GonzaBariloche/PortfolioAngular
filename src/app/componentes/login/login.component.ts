@@ -4,6 +4,8 @@ import {FormControl} from '@angular/forms';
 import { User } from '../../models/user.interface';
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
+import { AbstractControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
