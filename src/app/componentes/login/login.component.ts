@@ -13,7 +13,10 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup = this.formBuilder.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(5)]]
+  });
 
   constructor(private formBuilder: FormBuilder, private authService:AuthService, private router: Router){
     this.form= this.formBuilder.group({
