@@ -7,6 +7,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 //import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { LoginComponent } from '../app/componentes/login/login.component';
+import { LoginModule } from './componentes/login/login.module';
 
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
@@ -31,7 +32,6 @@ import { CommonModule } from '@angular/common';
     AcercaDeComponent,
     ExperienciaEducacionComponent,
     PortfolioComponent,
-    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -41,9 +41,10 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    LoginModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-export class LoginModule { }
+
