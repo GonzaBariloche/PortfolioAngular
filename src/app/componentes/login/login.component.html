@@ -1,55 +1,4 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">{{ 'LOGIN.TITLE' | translate }}</div>
 
-        <div class="card-body">
-          <form [formGroup]="form" (ngSubmit)="onLogin()">
-            <div class="form-group row">
-              <label for="email" class="col-md-4 col-form-label text-md-right">{{ 'LOGIN.EMAIL' | translate }}</label>
-
-              <div class="col-md-6">
-                <input id="email" type="email" class="form-control" [formControlName]="'email'">
-
-                <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
-                  class="alert alert-danger">
-                  <div *ngIf="form.get('email')?.errors?.required">{{ 'LOGIN.EMAIL_REQUIRED' | translate }}</div>
-                  <div *ngIf="form.get('email')?.errors?.email">{{ 'LOGIN.INVALID_EMAIL' | translate }}</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label for="password" class="col-md-4 col-form-label text-md-right">{{ 'LOGIN.PASSWORD' | translate }}</label>
-
-              <div class="col-md-6">
-                <input id="password" type="password" class="form-control" [formControlName]="'password'">
-
-                <div *ngIf="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)"
-                  class="alert alert-danger">
-                  <div *ngIf="form.get('password')?.errors?.required">{{ 'LOGIN.PASSWORD_REQUIRED' | translate }}</div>
-                  <div *ngIf="form.get('password')?.errors?.minlength">{{ 'LOGIN.MIN_PASSWORD_LENGTH' | translate }}</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group row mb-0">
-              <div class="col-md-6 offset-md-4">
-                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">
-                  {{ 'LOGIN.LOGIN_BUTTON' | translate }}
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<!-- breve y funcional
 <h1 class="m-5">Iniciar Sesión</h1>
 <form (formGroup)="form" class="m-5" (submit)="onLogin(form.value)">
   <div>
@@ -69,7 +18,7 @@
   <button type="submit" class="btn btn-primary">Enviar</button>
 </form>
 
- --->
+
 
 
 <!-- buen intento 2 <h1 class="m-5">Iniciar Sesión</h1>

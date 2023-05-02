@@ -28,7 +28,9 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onLogin(form: User){
-    console.log("Se ejecutó el login");
+    console.log("Se ejecutó el login" );
+    console.log("Email: " + form.email);
+    console.log("Password: " + form.password);
     this.authService.login(form).then(() => {
       this.router.navigate(['/portfolio']);
     });
