@@ -1,3 +1,10 @@
-<app-encabezado>  </app-encabezado>  
-<app-acerca-de>  </app-acerca-de>
-<app-experiencia-educacion>  </app-experiencia-educacion>
+<div *ngIf="isLoggedIn">
+    <app-encabezado>  </app-encabezado>  
+    <app-acerca-de>  </app-acerca-de>
+    <app-experiencia-educacion>  </app-experiencia-educacion>
+  </div>
+  <div *ngIf="!isLoggedIn">
+    <p>Debe iniciar sesión para ver el portfolio.</p>
+  </div>
+
+

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth} from '@angular/fire/compat/auth';
 import { User } from '../models/user.interface';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  user: Observable<firebase.default.User> | undefined;
 
-  constructor(private authFire: AngularFireAuth) { }
+  constructor(private authFire: AngularFireAuth, private afAuth: AngularFireAuth) { }
 
   async login(user: User) {
 
@@ -30,5 +32,8 @@ export class AuthService {
 
     }
 
+  }
+  isLoggedIn(): boolean {
+    return !!this.afAuth.currentUser;
   }
 }

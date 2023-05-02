@@ -2,32 +2,12 @@
 <form (formGroup)="form" class="m-5" (submit)="onLogin(form.value)">
   <div>
     <label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
-    <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-      *[ngClass]="{'is-invalid': Email?.errors && Email?.touched,'is-valid': !Email?.errors && Email?.touched}">
-    <div *ngIf="Email?.errors && Email?.touched">
-      <p *ngIf="Email?.hasError('required')" class="text-danger">
-        El email es requerido.
-      </p>
-      <p *ngIf="Email?.hasError('email')" class="text-danger">
-        El formato del email debe ser válido.
-      </p>
-    </div>
+    <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
   </div>
 
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-    <input type="password" formControlName="password"
-      *[ngClass]="{'is-invalid': Password?.errors && Password?.touched,
-    'is-valid': !Password?.errors && Password?.touched}"
-      class="form-control" id="exampleInputPassword1">
-    <div *ngIf="Password?.errors && Password?.touched">
-      <p *ngIf="Password?.hasError('required')" class="text-danger">
-        La contraseña es requerida.
-      </p>
-      <p *ngIf="Password?.hasError('minlength')" class="text-danger">
-        La contraseña debe tener al menos 5 caracteres.
-      </p>
-    </div>
+    <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
   </div>
 
   <div class="mb-3 form-check">
@@ -38,6 +18,33 @@
 </form>
 
 
+
+
+<!-- buen intento 2 <h1 class="m-5">Iniciar Sesión</h1>
+<form (formGroup)="form" class="m-5" (ngSubmit)="onLogin()">
+  <div>
+    <label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
+    <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    <div *ngIf="form.controls.email.invalid && (form.controls.email.dirty || form.controls.email.touched)" class="text-danger">
+      <p *ngIf="form.controls.email.errors?.required">El correo electrónico es obligatorio.</p>
+      <p *ngIf="form.controls.email.errors?.email">El correo electrónico no es válido.</p>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+    <div *ngIf="form.controls.password.invalid && (form.controls.password.dirty || form.controls.password.touched)" class="text-danger">
+      <p *ngIf="form.controls.password.errors?.required">La contraseña es obligatoria.</p>
+      <p *ngIf="form.controls.password.errors?.minlength">La contraseña debe tener al menos 5 caracteres.</p>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+</form>
+
+
+ --->
 
 <!--<h1 class="m-5">Iniciar Sesión</h1>
 <form (FormGroup)="form" class="m-5" (ngSubmit)="onLogin(form.value)">

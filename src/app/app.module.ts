@@ -6,6 +6,7 @@ import { AngularFireModule } from "@angular/fire/compat";
 //import { AngularFireAuthModule } from "@angular/fire/auth";
 //import { AngularFirestoreModule } from "@angular/fire/firestore";
 
+import { LoginComponent } from '../app/componentes/login/login.component';
 
 import { AppComponent } from './app.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
@@ -29,7 +30,8 @@ import { CommonModule } from '@angular/common';
     EncabezadoComponent,
     AcercaDeComponent,
     ExperienciaEducacionComponent,
-    PortfolioComponent
+    PortfolioComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -44,3 +46,4 @@ import { CommonModule } from '@angular/common';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class LoginModule { }
