@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
   user: Observable<firebase.default.User> | undefined;
+  isAuthenticated = false; // Agregamos la propiedad isAuthenticated y la inicializamos en falso.
 
   constructor(private authFire: AngularFireAuth, private afAuth: AngularFireAuth) { }
 
@@ -21,12 +22,14 @@ export class AuthService {
       return await this.authFire.signInWithEmailAndPassword(email, password).then(result=>{
 
         console.log('Logueado correctamente',result)
+        this.isAuthenticated = true; // Actualizamos la propiedad isAuthenticated a verdadero.
 
       });
 
     } catch (error) {
 
       console.log("Hubo un error en el login: ", error);
+      this.isAuthenticated = false; // Actualizamos la propiedad isAuthenticated a falso.
 
       return null;
 
@@ -37,3 +40,4 @@ export class AuthService {
     return !!this.afAuth.currentUser;
   }
 }
+

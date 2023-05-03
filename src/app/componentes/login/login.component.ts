@@ -27,14 +27,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLogin(){
-    console.log("Se ejecutó el login" );
-    const formValue = this.form.value;
-    this.authService.login(formValue).then((result) => {
-      if (result) {
+  onLogin(form: User){
+    this.authService.login(form).then(() => {
+      // Verificar si el usuario está autenticado
+      if (this.authService.isLoggedIn()) {
+        console.log('Usuario autenticado correctamente');
         this.router.navigate(['/portfolio']);
       } else {
-        alert("Usuario o contraseña incorrectos");
+        // Si la autenticación falla, mostrar mensaje de error
+        console.log("Credenciales incorrectas");
       }
     });
   }

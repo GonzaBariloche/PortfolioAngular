@@ -1,6 +1,6 @@
 
 <h1 class="m-5">Iniciar Sesión</h1>
-<form [formGroup]="form" class="m-5" (submit)="onLogin()">
+<form [formGroup]="form" class="m-5" (submit)="onLogin(form.value)">
 
   <div>
     <label for="exampleInputEmail1" class="form-label">Dirección de correo</label>
