@@ -31,16 +31,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onLogin(event: Event) {
-    event.preventDefault(); // evita que la página se recargue
-    const user: User = this.form.value;
-    this.authService.login(user).then((res) => {
-      if (res) {
+  onLogin(email: string, password: string) {
+    this.authService.login(email, password)
+      .then(() => {
         this.router.navigate(['/portfolio']);
-      } else {
+      })
+      .catch((error) => {
+        console.log(error);
         this.router.navigate(['/iniciar-sesion']);
-      }
-    });
+      });
   }
 }
 

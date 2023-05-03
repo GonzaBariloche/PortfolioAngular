@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module'; // Agregamos esta línea
 import { RouterModule } from '@angular/router';
 import { AngularFireModule } from "@angular/fire/compat";
-//import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 //import { AngularFirestoreModule } from "@angular/fire/firestore";
 
 import { LoginComponent } from '../app/componentes/login/login.component';
@@ -39,6 +39,7 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    AngularFireAuth,
     CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     LoginModule 

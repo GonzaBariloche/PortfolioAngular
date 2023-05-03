@@ -1,43 +1,39 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth} from '@angular/fire/compat/auth';
-import { User } from '../models/user.interface';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  user: Observable<firebase.default.User> | undefined;
-  isAuthenticated = false; // Agregamos la propiedad isAuthenticated y la inicializamos en falso.
 
-  constructor(private authFire: AngularFireAuth, private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth, private router: Router) { }
 
-  async login(user: User) {
+  login(email: string, password: string): Promise<any> {
+    return this.afAuth.signInWithEmailAndPassword(email, password);
+  }
 
-    const {email, password} = user
+  logout(): void {
+    this.afAuth.signOut();
+  }
 
-    try {
+  isLoggedIn(): Observable<any> {
+    return this.afAuth.authState;
+  }
 
-      return await this.authFire.signInWithEmailAndPassword(email, password).then(result=>{
-
-        console.log('Logueado correctamente',result)
-        this.isAuthenticated = true; // Actualizamos la propiedad isAuthenticated a verdadero.
-
+  isAuthenticated(): Promise<boolean> {
+    return new Promise((resolve, reject) => {
+      this.afAuth.authState.subscribe((user) => {
+        if (user) {
+          resolve(true);
+        } else {
+          this.router.navigate(['/login']);
+          resolve(false);
+        }
       });
-
-    } catch (error) {
-
-      console.log("Hubo un error en el login: ", error);
-      this.isAuthenticated = false; // Actualizamos la propiedad isAuthenticated a falso.
-
-      return null;
-
-    }
-
+    });
   }
-  isLoggedIn(): boolean {
-    return !!this.afAuth.currentUser;
-  }
+
 }
 
