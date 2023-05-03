@@ -27,17 +27,37 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLogin(form: User){
-    this.authService.login(form).then(() => {
-      // Verificar si el usuario está autenticado
+  async onLogin(): Promise<void> {
+    const { email, password } = this.form.value;
+
+    try {
+      await this.authService.login({ email, password });
       if (this.authService.isLoggedIn()) {
-        console.log('Usuario autenticado correctamente');
         this.router.navigate(['/portfolio']);
       } else {
-        // Si la autenticación falla, mostrar mensaje de error
-        console.log("Credenciales incorrectas");
+        console.log('Credenciales incorrectas');
+        // mostrar mensaje de error
       }
-    });
+    } catch (error) {
+      console.log('Error en la autenticación', error);
+      // mostrar mensaje de error
+    }
   }
-  
 }
+
+   //
+ // onLogin(form: User){
+  //   this.authService.login(form).then(() => {
+     // Verificar si el usuario está autenticado
+   //    if (this.authService.isLoggedIn()) {
+    //     console.log('Usuario autenticado correctamente');
+    //     this.router.navigate(['/portfolio']);
+    //   } else {
+        // Si la autenticación falla, mostrar mensaje de error
+    //     console.log("Credenciales incorrectas");
+    //     this.router.navigate(['/iniciar-sesion']);
+    //   }
+   //  });
+  // }
+  
+ //}
