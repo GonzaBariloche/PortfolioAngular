@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../servicios/auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-portfolio',
@@ -10,11 +12,13 @@ import { Observable } from 'rxjs';
 export class PortfolioComponent implements OnInit {
   isLoggedIn: Observable<boolean> | undefined; // Cambiar a tipo Observable<boolean>
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.isLoggedIn().subscribe(isLoggedIn => {
-      this.isLoggedIn = isLoggedIn;
+    this.authService.isLoggedIn().subscribe((isLoggedIn) => {
+      if (!isLoggedIn) {
+        this.router.navigate(['/iniciar-sesion']);
+      }
     });}
   }
 
