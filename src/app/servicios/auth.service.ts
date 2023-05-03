@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Observable } from 'rxjs';
+import { Observable, map, of, startWith } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -8,7 +8,14 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private afAuth: AngularFireAuth, private router: Router) { }
+  isLoggedIn$: Observable<boolean> = of(false); // <--- Quitamos el inicializador de la propiedad
+
+  constructor(private afAuth: AngularFireAuth, private router: Router) {
+    this.isLoggedIn$ = this.afAuth.authState.pipe(
+      map(user => !!user),
+      startWith(false)
+    );
+  }
 
   login(email: string, password: string): Promise<any> {
     return this.afAuth.signInWithEmailAndPassword(email, password);
@@ -28,7 +35,7 @@ export class AuthService {
         if (user) {
           resolve(true);
         } else {
-          this.router.navigate(['/login']);
+          this.router.navigate(['/iniciar-sesion']);
           resolve(false);
         }
       });
