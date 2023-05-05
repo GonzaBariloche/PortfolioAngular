@@ -17,6 +17,10 @@
     <label class="form-check-label" for="exampleCheck1">Recordarme</label>
   </div>
   <button type="submit" class="btn btn-primary">Enviar</button>
+  <div *ngIf="loginError" [ngClass]="{'login-error': true}">
+    Credenciales incorrectas. Intente de nuevo.
+  </div>
+
 </form>
 
 

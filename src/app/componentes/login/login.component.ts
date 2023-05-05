@@ -13,6 +13,7 @@ import { AbstractControl } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginError = false; // Agregamos la variable loginError
   form: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(5)]]
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
       .catch((error) => {
         console.log(error);
         this.router.navigate(['/iniciar-sesion']);
+        this.loginError = true; // activamos loginError
       });
   }
 }
