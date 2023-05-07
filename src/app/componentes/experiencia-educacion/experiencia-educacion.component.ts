@@ -19,8 +19,9 @@ export class ExperienciaEducacionComponent implements OnInit{
     this.datosPortfolio.obtenerDatos().subscribe(data => {
       this.experienciaList = data.experiencia;
     })
-  }
+  }}
 
-}
+ 
+
 
 
