@@ -1,5 +1,6 @@
 export interface Educacion {
-    school: number;
+    id: number;
+    school: string;
     title: string;
     img: string;
     career: string;

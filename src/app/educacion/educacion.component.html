@@ -1,6 +1,50 @@
+<p class="container h2"><strong>EDUCACIÓN SQL</strong></p> 
+<p class="container h2"><strong>   </strong></p> 
+<div *ngFor="let educacion of educaciones" class="row">
+  <div class="col-sm-3">
+    <div class="well" style="text-align: center;">
+      <p><strong>{{educacion.school}}</strong></p>
+      <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+    </div>
+  </div>
+  <div class="col-sm-9">
+    <div class="well">
+      <p><strong>{{educacion.career}}</strong></p>
+      <p>{{educacion.start}} - {{educacion.end}}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- 
+  <div *ngFor="let educacion of educaciones" class="row">
+    <div class="col-sm-3">
+      <div class="well" style="text-align: center;">
+        <p><strong>{{educacion.school}}</strong></p>
+       <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="well">
+        <p><strong>{{educacion.career}}</strong></p>
+        <p>{{educacion.start}}- {{educacion.end}}</p>
+      </div>
+    </div>
+  </div>
+-->
+
+
+<!--
+
 <h2>Educaciones:</h2>
 <ul>
   <li *ngFor="let educacion of educaciones">
     {{ educacion.start }} - {{ educacion.end }}
   </li>
 </ul>
+
+-->
