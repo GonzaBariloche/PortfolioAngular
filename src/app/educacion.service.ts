@@ -14,15 +14,15 @@ export class EducacionService {
 
   getEducacion(): Observable<Educacion[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
-      map((res: any[]) => res.map((educacion: any) => new Educacion(
-        educacion.id,
-        educacion.school,
-        educacion.title,
-        educacion.img,
-        educacion.career,
-        educacion.start,
-        educacion.end
-      )))
+      map((res: any[]) => res.map((educacion: any) => ({
+        id: educacion.id,
+        school: educacion.school,
+        title: educacion.title,
+        img: educacion.img,
+        career: educacion.career,
+        start: educacion.start,
+        end: educacion.end
+      })))
     );
   }
 
