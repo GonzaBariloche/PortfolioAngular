@@ -25,6 +25,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EducacionComponent } from './educacion/educacion.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { EducacionComponent } from './educacion/educacion.component';
     AngularFireAuthModule,
     CommonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    LoginModule 
+    LoginModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,16 +11,51 @@ import { Educacion } from '../models/educacion.interface';
 export class EducacionComponent implements OnInit {
   @Input() educaciones: Educacion[] = [];
 
+  public educacionesAPI: Educacion[] = [];
+  public nuevaEducacion: Educacion = {} as Educacion;
+
   constructor(private educacionService: EducacionService) { }
 
-  ngOnInit() {
-    this.getEducaciones();
+ // ngOnInit() {
+  //  this.getEducaciones();
+  //}
+
+  //getEducaciones(): void {
+  //  this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
+  //}
+
+
+
+  ngOnInit(): void {
+    this.obtenerEducaciones();
   }
 
-  getEducaciones(): void {
+  public obtenerEducaciones(): void {
     this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
   }
+
+  
+  public abrirFormulario(): void {
+    this.mostrarFormulario = true;
+  }
+
+  public ocultarFormulario(): void {
+    this.formularioActivo = false;
+  }
+
+  public agregarEducacion(): void {
+    this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
+      .subscribe(() => {
+        this.ocultarFormulario = () => false;
+        this.obtenerEducaciones();
+      });
+  }
+
+
 }
+    
+  
+
 //
 //export class EducacionComponent implements OnInit {
 

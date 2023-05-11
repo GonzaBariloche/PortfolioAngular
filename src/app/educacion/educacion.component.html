@@ -3,6 +3,7 @@
 
 <p class="container h2"><strong>EDUCACIÓN SQL</strong></p> 
 <p class="container h2"><strong>   </strong></p> 
+<button (click)="mostrarFormulario()">Agregar educación</button>
 
 <div *ngFor="let educacion of educaciones" class="row">
   <div class="col-sm-3">
@@ -18,6 +19,49 @@
     </div>
   </div>
 </div>
+
+<!-- Botón para mostrar/ocultar el formulario de agregar educación -->
+<button (click)="mostrarFormulario()" class="btn btn-primary my-3">
+  Agregar nueva educación <i class="fas fa-plus-circle"></i>
+</button>
+
+<!-- Formulario para agregar educación -->
+<div class="card mb-3" *ngIf="mostrarFormulario">
+  <div class="card-header">
+    Agregar nueva educación
+  </div>
+  <div class="card-body">
+    <form *ngIf="mostrarFormulario">
+      <div class="form-group">
+        <label for="school">Escuela/Universidad</label>
+        <input type="text" class="form-control" id="school" name="school" [(ngModel)]="nuevaEducacion.school" required>
+      </div>
+      <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="nuevaEducacion.title" required>
+      </div>
+      <div class="form-group">
+        <label for="career">Carrera</label>
+        <input type="text" class="form-control" id="career" name="career" [(ngModel)]="nuevaEducacion.career" required>
+      </div>
+      <div class="form-group">
+        <label for="start">Fecha de inicio</label>
+        <input type="date" class="form-control" id="start" name="start" [(ngModel)]="nuevaEducacion.start" required>
+      </div>
+      <div class="form-group">
+        <label for="end">Fecha de finalización</label>
+        <input type="date" class="form-control" id="end" name="end" [(ngModel)]="nuevaEducacion.end">
+      </div>
+      <div class="form-group">
+        <label for="img">URL de la imagen</label>
+        <input type="url" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
+      </div>
+      <button class="btn btn-primary" (click)="ocultarFormulario()" *ngIf="formularioActivo">Cancelar</button>
+    </form>
+  </div>
+</div>
+
+
 
 </div>
 

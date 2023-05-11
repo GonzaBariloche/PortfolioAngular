@@ -57,4 +57,22 @@ export class EducacionService {
   deleteEducacion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-}
+
+  agregarEducacion(educacion: Educacion): Observable<Educacion> {
+    return this.agregarEducacionAPI(educacion);
+  }
+  
+
+  agregarEducacionAPI(educacion: Educacion): Observable<Educacion> {
+    return this.http.post<any>('http://localhost:8080/educacion', educacion).pipe(
+      map((res: any) => new Educacion(
+        res.id,
+        res.school,
+        res.title,
+        res.img,
+        res.career,
+        res.start,
+        res.end
+      ))
+    );
+}}
