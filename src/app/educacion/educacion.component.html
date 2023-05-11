@@ -56,7 +56,7 @@
         <label for="img">URL de la imagen</label>
         <input type="url" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
       </div>
-      <button class="btn btn-primary" (click)="ocultarFormulario()" *ngIf="formularioActivo">Cancelar</button>
+      <button class="btn btn-primary" (click)="ocultarFormulario()" *ngIf="mostrarFormulario">Cancelar</button>
     </form>
   </div>
 </div>

@@ -40,7 +40,7 @@ export class EducacionComponent implements OnInit {
   }
 
   public ocultarFormulario(): void {
-    this.formularioActivo = false;
+    this.mostrarFormulario = false;
   }
 
   public agregarEducacion(): void {
