@@ -65,5 +65,5 @@ export class EducacionService {
 
   public agregarEducacionAPI(educacion: Educacion): Observable<Educacion> {
     return this.http.post<Educacion>(`${this.apiUrl}`, educacion);
-  }
+}
 }
