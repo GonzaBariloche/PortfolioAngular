@@ -151,7 +151,7 @@ getEducaciones(): void {
         this.showForm = false;
         this.educacionForm.reset();
         console.log('La educación se actualizó correctamente.');
-        this.router.navigate(['/educaciones']);
+        this.router.navigate(['/portfolio']);
       }, error => {
         console.error('Ocurrió un error al actualizar la educación: ', error);
       });
