@@ -1,103 +1,98 @@
 
 <div class="col-sm-7">
 
-<p class="container h2"><strong>EDUCACIÓN SQL</strong></p> 
-<p class="container h2"><strong>   </strong></p> 
-
-
-<div *ngFor="let educacion of educaciones" class="row">
-  <div class="col-sm-3">
-    <div class="well" style="text-align: center;">
-      <p><strong>{{educacion.school}}</strong></p>
-      <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+  <p class="container h2"><strong>EDUCACIÓN SQL</strong></p> 
+  <p class="container h2"><strong>   </strong></p> 
+  
+  
+  <div *ngFor="let educacion of educaciones" class="row">
+    <div class="col-sm-3">
+      <div class="well" style="text-align: center;">
+        <p><strong>{{educacion.school}}</strong></p>
+        <img src="{{educacion.img}}" class="img-circle" height="55" width="55" alt="Avatar">
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="well">
+  
+  
+  
+        <button (click)="showEditForm(educacion.id)">Editar</button>
+  
+        <button (click)="deleteEducacion(educacion.id)">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+  
+        <p><strong>{{educacion.career}}</strong></p>
+        <p>{{educacion.start}} - {{educacion.end}}</p>
+      </div>
     </div>
   </div>
-  <div class="col-sm-9">
-    <div class="well">
-
-
-
-      <button (click)="showEditForm(educacion.id)">Editar</button>
-
-      <button (click)="deleteEducacion(educacion.id)">
-        <i class="fas fa-trash-alt"></i>
-      </button>
-
-      <p><strong>{{educacion.career}}</strong></p>
-      <p>{{educacion.start}} - {{educacion.end}}</p>
+  
+  <!-- Botón para mostrar/ocultar el formulario de agregar educación -->
+  <button (click)="abrirFormulario()" class="btn btn-primary my-3">
+    Agregar nueva educación <i class="fas fa-plus-circle"></i>
+  </button>
+  
+  <!-- Formulario para agregar educación -->
+  <div *ngIf="mostrarFormulario">
+    <div class="card-header">
+      Agregar nueva educación
+    <form>
+    <div >
+  
+  
+          <label for="school">Escuela/Universidad</label>
+          <input type="text" class="form-control" id="school" name="school" [(ngModel)]="nuevaEducacion.school" required>
+  
+         <label for="title">Título</label>
+          <input type="text" class="form-control" id="title" name="title" [(ngModel)]="nuevaEducacion.title" required>
+  
+  
+          <label for="carrera">Carrera</label>
+          <input type="text" class="form-control" id="carrera" name="carrera" [(ngModel)]="nuevaEducacion.career" required>
+  
+  
+          <label for="fechaInicio">Fecha de inicio</label>
+          <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" [(ngModel)]="nuevaEducacion.start" required>
+  
+  
+          <label for="fechaFin">Fecha de finalización</label>
+          <input type="text" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="nuevaEducacion.end">
+  
+  
+          <label for="img">URL de la imagen</label>
+          <input type="text" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
+  
+        <button class="btn btn-primary mr-2"(click)="guardarEducacion()">Agregar</button>
+        <button class="btn btn-primary" (click)="ocultarFormulario()">Cancelar</button>
+      </div>
+      </form>
     </div>
   </div>
-</div>
-
-<!-- Botón para mostrar/ocultar el formulario de agregar educación -->
-<button (click)="abrirFormulario()" class="btn btn-primary my-3">
-  Agregar nueva educación <i class="fas fa-plus-circle"></i>
-</button>
-
-<!-- Formulario para agregar educación -->
-<div *ngIf="mostrarFormulario">
-  <div class="card-header">
-    Agregar nueva educación
-  <form>
-  <div >
-
-
-        <label for="school">Escuela/Universidad</label>
-        <input type="text" class="form-control" id="school" name="school" [(ngModel)]="nuevaEducacion.school" required>
-
-       <label for="title">Título</label>
-        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="nuevaEducacion.title" required>
-
-
-        <label for="carrera">Carrera</label>
-        <input type="text" class="form-control" id="carrera" name="carrera" [(ngModel)]="nuevaEducacion.career" required>
-
-
-        <label for="fechaInicio">Fecha de inicio</label>
-        <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" [(ngModel)]="nuevaEducacion.start" required>
-
-
-        <label for="fechaFin">Fecha de finalización</label>
-        <input type="text" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="nuevaEducacion.end">
-
-
-        <label for="img">URL de la imagen</label>
-        <input type="text" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
-
-      <button class="btn btn-primary mr-2"(click)="guardarEducacion()">Agregar</button>
-      <button class="btn btn-primary" (click)="ocultarFormulario()">Cancelar</button>
-    </div>
+  
+  <!-- Formulario para editar educación -->
+  <div *ngIf="showForm">
+    <form (ngSubmit)="updateEducacion()" #editForm="ngForm">
+      <input type="text" name="school" [(ngModel)]="educacion.school">
+      <input type="text" name="title" [(ngModel)]="educacion.title">
+      <input type="text" name="img" [(ngModel)]="educacion.img">
+      <input type="text" name="career" [(ngModel)]="educacion.career">
+      <input type="text" name="start" [(ngModel)]="educacion.start">
+      <input type="text" name="end" [(ngModel)]="educacion.end">
+      <button type="submit">Guardar</button>
     </form>
   </div>
-</div>
-
-<!-- Formulario para editar educación -->
-<div *ngIf="showForm">
-  <form (ngSubmit)="updateEducacion()" #editForm="ngForm">
-    <input type="text" name="school" [(ngModel)]="educacion.school">
-    <input type="text" name="title" [(ngModel)]="educacion.title">
-    <input type="text" name="img" [(ngModel)]="educacion.img">
-    <input type="text" name="career" [(ngModel)]="educacion.career">
-    <input type="text" name="start" [(ngModel)]="educacion.start">
-    <input type="text" name="end" [(ngModel)]="educacion.end">
-    <button type="submit">Guardar</button>
-  </form>
-</div>
-
-<!-- Mostrar los detalles de la educación -->
-<div *ngIf="showForm">
-  <p>School: {{educacion.school}}</p>
-  <p>Title: {{educacion.title}}</p>
-  <p>Img: {{educacion.img}}</p>
-  <p>Career: {{educacion.career}}</p>
-  <p>Start: {{educacion.start}}</p>
-  <p>End: {{educacion.end}}</p>
-</div>
-
-
-
-
-
+  
+  <!-- Mostrar los detalles de la educación -->
+  <div *ngIf="showForm">
+    <p>School: {{educacion.school}}</p>
+    <p>Title: {{educacion.title}}</p>
+    <p>Img: {{educacion.img}}</p>
+    <p>Career: {{educacion.career}}</p>
+    <p>Start: {{educacion.start}}</p>
+    <p>End: {{educacion.end}}</p>
+  </div>
 
 <!-- 
   <div *ngFor="let educacion of educaciones" class="row">

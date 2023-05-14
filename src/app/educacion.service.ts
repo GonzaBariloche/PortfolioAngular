@@ -27,19 +27,19 @@ getEducacionById(educacionId: number): Observable<Educacion> {
 }
 
 updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
-  console.log("Objeto JSON a enviar:", updatedEducacion);
   return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion)).pipe(
-      map((res: any) => new Educacion(
-          updatedEducacion.id,
-          res.school,
-          res.title,
-          res.img,
-          res.career,
-          res.start,
-          res.end
-      ))
+    map((res: any) => new Educacion(
+      updatedEducacion.id,
+      res.school,
+      res.title,
+      res.img,
+      res.career,
+      res.start,
+      res.end
+    ))
   );
 }
+
 
 
 deleteEducacion(id: number): Observable<void> {

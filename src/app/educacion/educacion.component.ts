@@ -3,9 +3,8 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 import { Subscription, Observable } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
 
 @Component({
   selector: 'app-educacion',
@@ -167,6 +166,26 @@ getEducaciones(): void {
       });
     }
   }
+
+  onSubmit() {
+    const updatedEducacion = new Educacion(
+      this.educacionForm.value.id,
+      this.educacionForm.value.school,
+      this.educacionForm.value.title,
+      this.educacionForm.value.img,
+      this.educacionForm.value.career,
+      this.educacionForm.value.start,
+      this.educacionForm.value.end
+    );
+    this.educacionService.updateEducacion(updatedEducacion)
+      .subscribe((res) => {
+        console.log(res);
+        this.router.navigate(['/educacion']);
+      }, (err) => {
+        console.log(err);
+      });
+  }
+  
 
 }
   
