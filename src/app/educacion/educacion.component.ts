@@ -13,6 +13,7 @@ export class EducacionComponent implements OnInit {
 
   public educacionesAPI: Educacion[] = [];
   public nuevaEducacion: Educacion = {} as Educacion;
+  public mostrarFormulario = false;
 
   constructor(private educacionService: EducacionService) { }
 
@@ -36,6 +37,7 @@ export class EducacionComponent implements OnInit {
 
   
   public abrirFormulario(): void {
+    const nuevaEducacion = new Educacion(0, '', '', '', '', '', '');
     this.mostrarFormulario = true;
   }
 
@@ -46,11 +48,18 @@ export class EducacionComponent implements OnInit {
   public agregarEducacion(): void {
     this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
-        this.ocultarFormulario = () => false;
+        this.ocultarFormulario();
         this.obtenerEducaciones();
       });
   }
 
+  guardarEducacion(): void {
+    
+    this.educaciones.push(this.nuevaEducacion);
+    this.ocultarFormulario();
+    this.nuevaEducacion = {} as Educacion; // asignar un objeto vacío a la propiedad nuevaEducacion
+  }
+  
 
 }
     

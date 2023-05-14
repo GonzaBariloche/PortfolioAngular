@@ -63,16 +63,7 @@ export class EducacionService {
   }
   
 
-  agregarEducacionAPI(educacion: Educacion): Observable<Educacion> {
-    return this.http.post<any>('http://localhost:8080/educacion', educacion).pipe(
-      map((res: any) => new Educacion(
-        res.id,
-        res.school,
-        res.title,
-        res.img,
-        res.career,
-        res.start,
-        res.end
-      ))
-    );
-}}
+  public agregarEducacionAPI(educacion: Educacion): Observable<Educacion> {
+    return this.http.post<Educacion>(`${this.apiUrl}`, educacion);
+  }
+}
