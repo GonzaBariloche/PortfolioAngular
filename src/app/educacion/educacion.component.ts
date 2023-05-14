@@ -4,6 +4,7 @@ import { Subscription, Observable } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,21 +15,71 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 export class EducacionComponent implements OnInit {
   @Input() educaciones: Educacion[] = [];
 
+  educacion: Educacion;
+
+  showForm: boolean = false;
+  educacionForm!: FormGroup;
+
+  educacionId!: number;
+
   public educacionesAPI: Educacion[] = [];
   public nuevaEducacion: Educacion = new Educacion(0, '', '', '', '', '', '');
 
   public mostrarFormulario: boolean = false;
 
 
-  constructor(private educacionService: EducacionService) { };
+  constructor(
+    private educacionService: EducacionService,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+  ){this.educacionForm = this.fb.group({
+    school: ['', Validators.required],
+    title: ['', Validators.required],
+    img: ['', Validators.required],
+    career: ['', Validators.required],
+    start: ['', Validators.required],
+    end: ['', Validators.required]
+  });
+  this.educacion = {id: 0, school: '', title: '', img: '', career: '', start: '', end: ''};
+  this.educacionId = +this.route.snapshot.params['id'];};
 
 
-ngOnInit(): void {}
+ngOnInit(): void {
+  this.educacionId = +this.route.snapshot.params['id'];
+  this.getEducaciones();
+  this.initForm();
+}
 
-  public obtenerEducaciones(): void {
-    this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
-  }
+initForm(): void {
+  this.educacionForm = this.fb.group({
+    school: ['', Validators.required],
+    title: ['', Validators.required],
+    img: ['', Validators.required],
+    career: ['', Validators.required],
+    start: ['', Validators.required],
+    end: ['', Validators.required],
+  });
+}
 
+  //public obtenerEducaciones(): void {
+  //  this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
+  //}
+
+///Puse un cero para probar
+getEducaciones(): void {
+  this.educacionService.getEducacion().subscribe(
+    (data: Educacion[]) => {
+      this.educaciones = this.educaciones.concat(data);
+    },
+    (error) => {
+      console.error('Ocurrió un error al obtener las educaciones: ', error);
+    }
+  );
+}
+
+
+  
   
   public abrirFormulario(): void {
     this.nuevaEducacion = new Educacion(0, '', '', '', '', '', '');
@@ -40,7 +91,7 @@ ngOnInit(): void {}
   }
 
 
-  
+  ///esto es lo mas importante!!!
   public guardarEducacion(): void {
     console.log('nueva educaicon:');
     console.log(this.nuevaEducacion);
@@ -49,7 +100,7 @@ ngOnInit(): void {}
     console.log('valid:');
 
 
-    console.log('objeto a enviar');
+    console.log('objeto a enviar:');
     console.log(this.nuevaEducacion);
 
     this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
@@ -58,17 +109,64 @@ ngOnInit(): void {}
         console.log(this.nuevaEducacion);
         console.log(this.nuevaEducacion.school);
 
-        this.obtenerEducaciones();
+        this.getEducaciones();
         this.ocultarFormulario();
         console.log('La educación se agregó correctamente.');
         }, error => {
         console.error('Ocurrió un error al agregar la educación: ', error);
       });
   }
+
+
+
+  public showEditForm(educacionId: number): void {
+    this.educacionId = educacionId;
+    this.educacionService.getEducacion(educacionId).subscribe((data) => {
+        this.educacion = data;
+        this.educacionForm.patchValue({
+            school: this.educacion.school,
+            title: this.educacion.title,
+            img: this.educacion.img,
+            career: this.educacion.career,
+            start: this.educacion.start,
+            end: this.educacion.end,
+        });
+        this.showForm = true;
+    });
 }
 
 
-    
+
+
+
+
+
+
+
+  updateEducacion(): void {
+    const updatedEducacion = {...this.educacionForm.value, id: this.educacionId};
+    this.educacionService.updateEducacion(updatedEducacion)
+      .subscribe(() => {
+        this.getEducaciones();
+        this.showForm = false;
+        this.educacionForm.reset();
+        console.log('La educación se actualizó correctamente.');
+        this.router.navigate(['/educaciones']);
+      }, error => {
+        console.error('Ocurrió un error al actualizar la educación: ', error);
+      });
+  }
+
+
+  public deleteEducacion(id: number) {
+    if (confirm("¿Estás seguro de que quieres eliminar esta educación?")) {
+      this.educacionService.deleteEducacion(id).subscribe(() => {
+        this.educaciones = this.educaciones.filter(e => e.id !== id);
+      });
+    }
+  }
+
+}
   
 
 //

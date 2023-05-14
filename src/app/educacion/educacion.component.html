@@ -14,6 +14,15 @@
   </div>
   <div class="col-sm-9">
     <div class="well">
+
+
+
+      <button (click)="showEditForm(educacion.id)">Editar</button>
+
+      <button (click)="deleteEducacion(educacion.id)">
+        <i class="fas fa-trash-alt"></i>
+      </button>
+
       <p><strong>{{educacion.career}}</strong></p>
       <p>{{educacion.start}} - {{educacion.end}}</p>
     </div>
@@ -62,8 +71,28 @@
   </div>
 </div>
 
+<!-- Formulario para editar educación -->
+<div *ngIf="showForm">
+  <form (ngSubmit)="updateEducacion()" #editForm="ngForm">
+    <input type="text" name="school" [(ngModel)]="educacion.school">
+    <input type="text" name="title" [(ngModel)]="educacion.title">
+    <input type="text" name="img" [(ngModel)]="educacion.img">
+    <input type="text" name="career" [(ngModel)]="educacion.career">
+    <input type="text" name="start" [(ngModel)]="educacion.start">
+    <input type="text" name="end" [(ngModel)]="educacion.end">
+    <button type="submit">Guardar</button>
+  </form>
+</div>
 
-
+<!-- Mostrar los detalles de la educación -->
+<div *ngIf="!showForm">
+  <p>School: {{educacion.school}}</p>
+  <p>Title: {{educacion.title}}</p>
+  <p>Img: {{educacion.img}}</p>
+  <p>Career: {{educacion.career}}</p>
+  <p>Start: {{educacion.start}}</p>
+  <p>End: {{educacion.end}}</p>
+</div>
 
 
 
