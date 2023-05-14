@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { Subscription } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
 
@@ -46,11 +47,18 @@ export class EducacionComponent implements OnInit {
   }
 
   public agregarEducacion(): void {
-    this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
+    const subscription: Subscription = this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
-        this.ocultarFormulario();
         this.obtenerEducaciones();
+        this.ocultarFormulario();
+        console.log('La educación se agregó correctamente.');
+        console.log(this.nuevaEducacion);
+      }, error => {
+        console.error('Ocurrió un error al agregar la educación: ', error);
       });
+
+    // Desuscribirse para evitar fugas de memoria
+    subscription.unsubscribe();
   }
 
   guardarEducacion(): void {
