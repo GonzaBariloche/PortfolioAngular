@@ -15,7 +15,7 @@ export class EducacionComponent implements OnInit {
   @Input() educaciones: Educacion[] = [];
 
   public educacionesAPI: Educacion[] = [];
-  public nuevaEducacion: Educacion = {} as Educacion;
+  public nuevaEducacion: Educacion = new Educacion(0, '', '', '', '', '', '');
 
   public mostrarFormulario: boolean = false;
 
@@ -49,16 +49,20 @@ ngOnInit(): void {}
 
   
   public abrirFormulario(): void {
+    this.formularioEducacion.setValue(new Educacion(0, '', '', '', '', '', ''));
     this.mostrarFormulario = true;
   }
 
   public ocultarFormulario(): void {
-    this.formularioEducacion.reset();
     this.mostrarFormulario = false;
   }
 
 
   public guardarEducacion(): void {
+    console.log(this.nuevaEducacion);
+    console.log(this.nuevaEducacion.school);
+    console.log(this.formularioEducacion.valid);
+
     this.nuevaEducacion.school = this.formularioEducacion.value.school;
     console.log(this.nuevaEducacion.school);
     this.nuevaEducacion.title = this.formularioEducacion.value.title;
@@ -76,14 +80,14 @@ ngOnInit(): void {}
     
     this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
-        this.obtenerEducaciones();
-        this.ocultarFormulario();
-        console.log('La educación se agregó correctamente.');
         console.log(this.nuevaEducacion);
         console.log(this.nuevaEducacion.school);
         console.log(this.formularioEducacion.value.school);
         console.log(this.formularioEducacion.valid);
-      }, error => {
+        this.obtenerEducaciones();
+        this.ocultarFormulario();
+        console.log('La educación se agregó correctamente.');
+        }, error => {
         console.error('Ocurrió un error al agregar la educación: ', error);
       });
   }
