@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Educacion } from './models/educacion.interface';
@@ -27,20 +27,23 @@ getEducacionById(educacionId: number): Observable<Educacion> {
 }
 
 updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
-  return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion)).pipe(
-    map((res: any) => new Educacion(
-      updatedEducacion.id,
-      res.school,
-      res.title,
-      res.img,
-      res.career,
-      res.start,
-      res.end
-    ))
+  const options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
+  return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion), options).pipe(
+      map((res: any) => new Educacion(
+          updatedEducacion.id,
+          res.school,
+          res.title,
+          res.img,
+          res.career,
+          res.start,
+          res.end
+      ))
   );
 }
-
-
 
 deleteEducacion(id: number): Observable<void> {
  return this.http.delete<void>(`${this.apiUrl}/${id}`);

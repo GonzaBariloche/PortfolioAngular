@@ -73,7 +73,7 @@
   
   <!-- Formulario para editar educación -->
   <div *ngIf="showForm">
-    <form (ngSubmit)="updateEducacion()" #editForm="ngForm">
+    <form (ngSubmit)="updateEducacion(educacion)">
       <input type="text" name="school" [(ngModel)]="educacion.school">
       <input type="text" name="title" [(ngModel)]="educacion.title">
       <input type="text" name="img" [(ngModel)]="educacion.img">

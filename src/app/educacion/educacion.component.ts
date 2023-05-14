@@ -142,19 +142,13 @@ getEducaciones(): void {
 
 
 
-  updateEducacion(): void {
-    const updatedEducacion = {...this.educacionForm.value, id: this.educacionId};
-    this.educacionService.updateEducacion(updatedEducacion)
-        .subscribe(() => {
-            this.getEducaciones();
-            this.showForm = false;
-            this.educacionForm.reset();
-            console.log('La educación se actualizó correctamente.');
-            this.router.navigate(['/portfolio']);
-        }, error => {
-            console.error('Ocurrió un error al actualizar la educación: ', error);
-        });
-}
+  updateEducacion(educacion: Educacion): void {
+    this.educacionService.updateEducacion(educacion)
+      .subscribe((updatedEducacion) => {
+        console.log("Educación actualizada:", updatedEducacion);
+        this.showForm = false;
+      });
+  }
 
   
 
