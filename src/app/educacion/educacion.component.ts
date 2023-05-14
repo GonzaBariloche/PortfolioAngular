@@ -68,15 +68,13 @@ initForm(): void {
 
 ///Puse un cero para probar
 getEducaciones(): void {
-  this.educacionService.getEducacion().subscribe(
-    (data: Educacion[]) => {
-      this.educaciones = this.educaciones.concat(data);
-    },
-    (error) => {
-      console.error('Ocurrió un error al obtener las educaciones: ', error);
-    }
-  );
+  this.educacionService.getEducacion().subscribe((data: Educacion[]) => {
+    this.educaciones.push(...data);
+  }, error => {
+    console.error('Ocurrió un error al obtener las educaciones: ', error);
+  });
 }
+
 
 
   
@@ -121,19 +119,21 @@ getEducaciones(): void {
 
   public showEditForm(educacionId: number): void {
     this.educacionId = educacionId;
-    this.educacionService.getEducacion(educacionId).subscribe((data) => {
-        this.educacion = data;
-        this.educacionForm.patchValue({
-            school: this.educacion.school,
-            title: this.educacion.title,
-            img: this.educacion.img,
-            career: this.educacion.career,
-            start: this.educacion.start,
-            end: this.educacion.end,
-        });
-        this.showForm = true;
+    this.educacionService.getEducacionById(educacionId).subscribe((data) => {
+      this.educacion = data;
+      this.educacionForm.patchValue({
+        school: this.educacion.school,
+        title: this.educacion.title,
+        img: this.educacion.img,
+        career: this.educacion.career,
+        start: this.educacion.start,
+        end: this.educacion.end,
+      });
+      this.showForm = true;
     });
-}
+  }
+
+
 
 
 

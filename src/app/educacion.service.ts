@@ -12,11 +12,19 @@ export class EducacionService {
 
   constructor(private http: HttpClient) { }
 
-  getEducacion(educacionId: number): Observable<Educacion> {
-    return this.http.get<Educacion>(`${this.apiUrl}/${educacionId}`);
+  //funciona OK
+ // getEducacion(educacionId: number): Observable<Educacion> {
+  //  return this.http.get<Educacion>(`${this.apiUrl}/${educacionId}`);
+//}
+
+getEducacion(): Observable<Educacion[]> {
+  return this.http.get<Educacion[]>(this.apiUrl);
 }
 
-
+getEducacionById(educacionId: number): Observable<Educacion> {
+  const url = `${this.apiUrl}/${educacionId}`;
+  return this.http.get<Educacion>(url);
+}
 
 updateEducacion(educacion: Educacion): Observable<Educacion> {
  return this.http.put<any>(`${this.apiUrl}/${educacion.id}`, educacion).pipe(
