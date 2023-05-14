@@ -32,9 +32,10 @@ updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
       'Content-Type': 'application/json'
     })
   };
+  console.log("Objeto JSON a enviar:", updatedEducacion);
   return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion), options).pipe(
       map((res: any) => new Educacion(
-          updatedEducacion.id,
+          res.id,
           res.school,
           res.title,
           res.img,
