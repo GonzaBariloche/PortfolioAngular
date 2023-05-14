@@ -28,17 +28,20 @@ getEducacionById(educacionId: number): Observable<Educacion> {
 
 updateEducacion(educacion: Educacion): Observable<Educacion> {
  return this.http.put<any>(`${this.apiUrl}/${educacion.id}`, educacion).pipe(
-      map((res: any) => new Educacion(
-      res.id,
-      res.school,
-      res.title,
-      res.img,
-      res.career,
-      res.start,
-      res.end
-     ))
+      map((res: any) => {
+         console.log('res:', res);
+         return new Educacion(
+            educacion.id,
+            res.school,
+            res.title,
+            res.img,
+            res.career,
+            res.start,
+            res.end
+         );
+      })
    );
- }
+}
 
 deleteEducacion(id: number): Observable<void> {
  return this.http.delete<void>(`${this.apiUrl}/${id}`);
