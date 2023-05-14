@@ -3,6 +3,8 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
 import { Subscription } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-educacion',
@@ -14,23 +16,41 @@ export class EducacionComponent implements OnInit {
 
   public educacionesAPI: Educacion[] = [];
   public nuevaEducacion: Educacion = {} as Educacion;
-  public mostrarFormulario = false;
 
-  constructor(private educacionService: EducacionService) { }
+  public mostrarFormulario: boolean = false;
 
- // ngOnInit() {
-  //  this.getEducaciones();
-  //}
+  formularioEducacion: FormGroup = new FormGroup({
+    school: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    career: new FormControl('', Validators.required),
+    start: new FormControl('', Validators.required),
+    end: new FormControl(''),
+    img: new FormControl('')
+  });
 
-  //getEducaciones(): void {
-  //  this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
-  //}
 
+  constructor(private educacionService: EducacionService, private formBuilder: FormBuilder) { 
+    
+    this.formularioEducacion = new FormGroup({
+    school: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    career: new FormControl('', Validators.required),
+    start: new FormControl('', Validators.required),
+    end: new FormControl(''),
+    img: new FormControl('')
+  });
+}
 
-
-  ngOnInit(): void {
-    this.obtenerEducaciones();
-  }
+ngOnInit(): void {
+  this.formularioEducacion = this.formBuilder.group({
+    school: ['', Validators.required],
+    title: ['', Validators.required],
+    career: ['', Validators.required],
+    start: ['', Validators.required],
+    end: [''],
+    img: ['']
+  });
+}
 
   public obtenerEducaciones(): void {
     this.educacionService.getEducacion().subscribe(educaciones => this.educaciones = educaciones);
@@ -42,12 +62,15 @@ export class EducacionComponent implements OnInit {
     this.mostrarFormulario = true;
   }
 
-  public ocultarFormulario(): void {
+  ocultarFormulario(): void {
+    this.formularioEducacion.reset();
     this.mostrarFormulario = false;
   }
 
-  public agregarEducacion(): void {
-    const subscription: Subscription = this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
+
+  public guardarEducacion(): void {
+    this.nuevaEducacion = this.formularioEducacion.value;
+    this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
         this.obtenerEducaciones();
         this.ocultarFormulario();
@@ -56,16 +79,6 @@ export class EducacionComponent implements OnInit {
       }, error => {
         console.error('Ocurrió un error al agregar la educación: ', error);
       });
-
-    // Desuscribirse para evitar fugas de memoria
-    subscription.unsubscribe();
-  }
-
-  guardarEducacion(): void {
-    
-    this.educaciones.push(this.nuevaEducacion);
-    this.ocultarFormulario();
-    this.nuevaEducacion = {} as Educacion; // asignar un objeto vacío a la propiedad nuevaEducacion
   }
   
 

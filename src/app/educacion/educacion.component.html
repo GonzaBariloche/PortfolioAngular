@@ -33,28 +33,28 @@
   <div class="card-body">
     <form (ngSubmit)="guardarEducacion()">
       <div class="form-group">
-        <label for="school">Escuela/Universidad</label>
-        <input type="text" class="form-control" id="school" name="school" [(ngModel)]="nuevaEducacion.school" required>
+        <label for="institucion">Escuela/Universidad</label>
+        <input type="text" class="form-control" id="institucion" name="institucion" [(ngModel)]="nuevaEducacion.school" required>
       </div>
       <div class="form-group">
-        <label for="title">Título</label>
-        <input type="text" class="form-control" id="title" name="title" [(ngModel)]="nuevaEducacion.title" required>
+        <label for="titulo">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" [(ngModel)]="nuevaEducacion.title" required>
       </div>
       <div class="form-group">
-        <label for="career">Carrera</label>
-        <input type="text" class="form-control" id="career" name="career" [(ngModel)]="nuevaEducacion.career" required>
+        <label for="carrera">Carrera</label>
+        <input type="text" class="form-control" id="carrera" name="carrera" [(ngModel)]="nuevaEducacion.career" required>
       </div>
       <div class="form-group">
-        <label for="start">Fecha de inicio</label>
-        <input type="text" class="form-control" id="start" name="start" [(ngModel)]="nuevaEducacion.start" required>
+        <label for="fechaInicio">Fecha de inicio</label>
+        <input type="text" class="form-control" id="fechaInicio" name="fechaInicio" [(ngModel)]="nuevaEducacion.start" required>
       </div>
       <div class="form-group">
-        <label for="end">Fecha de finalización</label>
-        <input type="text" class="form-control" id="end" name="end" [(ngModel)]="nuevaEducacion.end">
+        <label for="fechaFin">Fecha de finalización</label>
+        <input type="text" class="form-control" id="fechaFin" name="fechaFin" [(ngModel)]="nuevaEducacion.end">
       </div>
       <div class="form-group">
         <label for="img">URL de la imagen</label>
-        <input type="url" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
+        <input type="text" class="form-control" id="img" name="img" [(ngModel)]="nuevaEducacion.img">
       </div>
       <button class="btn btn-primary mr-2" type="submit">Agregar</button>
       <button class="btn btn-primary" (click)="ocultarFormulario()">Cancelar</button>
