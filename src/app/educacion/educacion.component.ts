@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { PortfolioService } from 'src/app/servicios/portfolio.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -19,27 +19,9 @@ export class EducacionComponent implements OnInit {
 
   public mostrarFormulario: boolean = false;
 
-  formularioEducacion: FormGroup = new FormGroup({
-    school: new FormControl(''),
-    title: new FormControl(''),
-    career: new FormControl(''),
-    start: new FormControl(''),
-    end: new FormControl(''),
-    img: new FormControl('')
-  });
 
+  constructor(private educacionService: EducacionService) { };
 
-  constructor(private educacionService: EducacionService, private formBuilder: FormBuilder) { 
-    
-    this.formularioEducacion = new FormGroup({
-    school: new FormControl(''),
-    title: new FormControl(''),
-    career: new FormControl(''),
-    start: new FormControl(''),
-    end: new FormControl(''),
-    img: new FormControl('')
-  });
-}
 
 ngOnInit(): void {}
 
@@ -49,7 +31,7 @@ ngOnInit(): void {}
 
   
   public abrirFormulario(): void {
-    this.formularioEducacion.setValue(new Educacion(0, '', '', '', '', '', ''));
+    this.nuevaEducacion = new Educacion(0, '', '', '', '', '', '');
     this.mostrarFormulario = true;
   }
 
@@ -58,32 +40,24 @@ ngOnInit(): void {}
   }
 
 
+  
   public guardarEducacion(): void {
+    console.log('nueva educaicon:');
     console.log(this.nuevaEducacion);
+    console.log('school:');
     console.log(this.nuevaEducacion.school);
-    console.log(this.formularioEducacion.valid);
+    console.log('valid:');
 
-    this.nuevaEducacion.school = this.formularioEducacion.value.school;
-    console.log(this.nuevaEducacion.school);
-    this.nuevaEducacion.title = this.formularioEducacion.value.title;
-    console.log(this.nuevaEducacion.title);
-    this.nuevaEducacion.career = this.formularioEducacion.value.career;
-    console.log(this.nuevaEducacion.career);
-    this.nuevaEducacion.start = this.formularioEducacion.value.start;
-    console.log(this.nuevaEducacion.start);
-    this.nuevaEducacion.end = this.formularioEducacion.value.end;
-    console.log(this.nuevaEducacion.end);
-    this.nuevaEducacion.img = this.formularioEducacion.value.img;
-    console.log(this.nuevaEducacion.img);
-    console.log(this.nuevaEducacion.school);
-    console.log(this.formularioEducacion.value.school);
-    
+
+    console.log('objeto a enviar');
+    console.log(this.nuevaEducacion);
+
     this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
+        console.log('lo que llega:');
         console.log(this.nuevaEducacion);
         console.log(this.nuevaEducacion.school);
-        console.log(this.formularioEducacion.value.school);
-        console.log(this.formularioEducacion.valid);
+
         this.obtenerEducaciones();
         this.ocultarFormulario();
         console.log('La educación se agregó correctamente.');
@@ -91,9 +65,9 @@ ngOnInit(): void {}
         console.error('Ocurrió un error al agregar la educación: ', error);
       });
   }
-  
-
 }
+
+
     
   
 
