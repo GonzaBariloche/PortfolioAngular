@@ -26,22 +26,21 @@ getEducacionById(educacionId: number): Observable<Educacion> {
   return this.http.get<Educacion>(url);
 }
 
-updateEducacion(educacion: Educacion): Observable<Educacion> {
- return this.http.put<any>(`${this.apiUrl}/${educacion.id}`, educacion).pipe(
-      map((res: any) => {
-         console.log('res:', res);
-         return new Educacion(
-            educacion.id,
-            res.school,
-            res.title,
-            res.img,
-            res.career,
-            res.start,
-            res.end
-         );
-      })
-   );
+updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
+  console.log("Objeto JSON a enviar:", updatedEducacion);
+  return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion)).pipe(
+      map((res: any) => new Educacion(
+          updatedEducacion.id,
+          res.school,
+          res.title,
+          res.img,
+          res.career,
+          res.start,
+          res.end
+      ))
+  );
 }
+
 
 deleteEducacion(id: number): Observable<void> {
  return this.http.delete<void>(`${this.apiUrl}/${id}`);
