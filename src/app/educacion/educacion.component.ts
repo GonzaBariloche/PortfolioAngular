@@ -69,7 +69,13 @@ ngOnInit(): void {
 
 
   public guardarEducacion(): void {
-    this.nuevaEducacion = this.formularioEducacion.value;
+    this.nuevaEducacion.school = this.formularioEducacion.value.school;
+    this.nuevaEducacion.title = this.formularioEducacion.value.title;
+    this.nuevaEducacion.career = this.formularioEducacion.value.career;
+    this.nuevaEducacion.start = this.formularioEducacion.value.start;
+    this.nuevaEducacion.end = this.formularioEducacion.value.end;
+    this.nuevaEducacion.img = this.formularioEducacion.value.img;
+    
     this.educacionService.agregarEducacionAPI(this.nuevaEducacion)
       .subscribe(() => {
         this.obtenerEducaciones();
@@ -80,6 +86,14 @@ ngOnInit(): void {
         console.error('Ocurrió un error al agregar la educación: ', error);
       });
   }
+  
+  
+  
+  
+  
+  
+  
+  
   
 
 }
