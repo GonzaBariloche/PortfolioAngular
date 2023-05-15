@@ -8,7 +8,7 @@ import { Educacion } from './models/educacion.interface';
   providedIn: 'root'
 })
 export class EducacionService {
-  private apiUrl = 'http://localhost:8080/educacion';
+  private apiUrl = 'https://apiportfolio-0rjq.onrender.com/educacion';
 
   constructor(private http: HttpClient) { }
 
