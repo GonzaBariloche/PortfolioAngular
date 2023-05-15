@@ -133,24 +133,16 @@ getEducaciones(): void {
   }
 
 
-
-
-
-
-
-
-
-
-
   updateEducacion(educacion: Educacion): void {
     this.educacionService.updateEducacion(educacion)
       .subscribe((updatedEducacion) => {
         console.log("Educación actualizada:", updatedEducacion);
         this.showForm = false;
+        this.educacionService.getEducacion().subscribe((educaciones) => {
+          this.educaciones = educaciones;
+        });
       });
   }
-
-  
 
 
   public deleteEducacion(id: number) {

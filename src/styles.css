@@ -133,15 +133,22 @@ line-height: 1.5;
     align-items: center;
 }
 
-.educacion-actions {
-    display: flex;
-    justify-content: flex-end;
+  
+
+ 
+
+  header {
+    background-image: url("https://argentinaprograma.inti.gob.ar/pluginfile.php/1/theme_moove/sliderimage1/1676134779/banner-ok-argentina-programa.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    padding: 15px;
+  }
+
+  button {
+    background-color: #a1a8a6; /* Cambiar a tu color preferido */
+    color: #ffffff; /* Cambiar a tu color preferido */
   }
   
-  .educacion-actions button {
-    margin-left: 5px;
-  }
+
   
-  .educacion-actions button svg {
-    color: greenyellow;
-  }

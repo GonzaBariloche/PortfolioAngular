@@ -1,7 +1,7 @@
 
 <div class="col-sm-7">
 
-  <p class="container h2"><strong>EDUCACIÓN SQL</strong></p> 
+  <p class="container h2"><strong>EDUCACIÓN</strong></p> 
   <p class="container h2"><strong>   </strong></p> 
   
   
@@ -15,15 +15,17 @@
     <div class="col-sm-9">
       <div class="well">
   
+
+        <button (click)="showEditForm(educacion.id)" class="btn btn-link">
+          <i class="fas fa-pencil-alt"></i></button>
   
   
-        <button (click)="showEditForm(educacion.id)">Editar</button>
-  
-        <button (click)="deleteEducacion(educacion.id)">
-          <i class="fas fa-trash-alt"></i>
+        <button (click)="deleteEducacion(educacion.id)" class="btn btn-link">
+          <i class="fas fa-trash-alt" ></i>
         </button>
-  
-        <p><strong>{{educacion.career}}</strong></p>
+
+
+          <p><strong>{{educacion.career}}</strong></p>
         <p>{{educacion.start}} - {{educacion.end}}</p>
       </div>
     </div>

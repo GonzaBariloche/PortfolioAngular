@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { EducacionComponent } from './educacion/educacion.component';
 import { FormsModule } from '@angular/forms';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FormsModule } from '@angular/forms';
     ExperienciaEducacionComponent,
     PortfolioComponent,
     EducacionComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

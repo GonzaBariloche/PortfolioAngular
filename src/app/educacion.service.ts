@@ -26,25 +26,34 @@ getEducacionById(educacionId: number): Observable<Educacion> {
   return this.http.get<Educacion>(url);
 }
 
-updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
-  const options = {
+updateEducacion(educacion: Educacion): Observable<Educacion> {
+  const url = `${this.apiUrl}/${educacion.id}`;
+  return this.http.put<Educacion>(url, educacion, {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
     })
-  };
-  console.log("Objeto JSON a enviar:", updatedEducacion);
-  return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion), options).pipe(
-      map((res: any) => new Educacion(
-          res.id,
-          res.school,
-          res.title,
-          res.img,
-          res.career,
-          res.start,
-          res.end
-      ))
-  );
+  });
 }
+
+//updateEducacion(updatedEducacion: Educacion): Observable<Educacion> {
+ // const options = {
+ //   headers: new HttpHeaders({
+ //     'Content-Type': 'application/json'
+ //   })
+ // };
+ // console.log("Objeto JSON a enviar:", updatedEducacion);
+ // return this.http.put<any>(`${this.apiUrl}/${updatedEducacion.id}`, JSON.stringify(updatedEducacion), options).pipe(
+ //     map((res: any) => new Educacion(
+ //         res.id,
+ //         res.school,
+ //         res.title,
+ //         res.img,
+  //        res.career,
+ //         res.start,
+ //         res.end
+  //    ))
+ // );
+
 
 deleteEducacion(id: number): Observable<void> {
  return this.http.delete<void>(`${this.apiUrl}/${id}`);
