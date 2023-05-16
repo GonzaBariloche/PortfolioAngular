@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class EncabezadoComponent implements OnInit, OnDestroy {
     miPortfolio: any;
-    isLoggedIn = false;
+    public isLoggedIn = false;
     editMode = 'Usted está en modo observación. Ingrese para editar';
  
     private subscription: Subscription;

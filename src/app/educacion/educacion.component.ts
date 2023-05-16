@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
-import { Subscription, Observable } from 'rxjs';
 import { EducacionService } from 'src/app/educacion.service';
 import { Educacion } from '../models/educacion.interface';
 import { FormGroup, FormControl, FormBuilder, Validators, FormsModule } from '@angular/forms';
@@ -25,7 +23,6 @@ export class EducacionComponent implements OnInit {
   public nuevaEducacion: Educacion = new Educacion(0, '', '', '', '', '', '');
 
   public mostrarFormulario: boolean = false;
-
 
   constructor(
     private educacionService: EducacionService,
