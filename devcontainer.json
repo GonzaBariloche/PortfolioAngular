@@ -6,6 +6,6 @@
       "ms-vscode.vscode-typescript-angular"
       // Agrega otras extensiones necesarias para tu proyecto
     ],
-    "postCreateCommand": "npm install",
+    "postCreateCommand": "npm install -g @angular/cli",
     "workbench.colorTheme": "Abyss"
   }
