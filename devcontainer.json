@@ -1,0 +1,11 @@
+{
+    "name": "Angular Development",
+    "dockerFile": "Dockerfile",
+    "settings": {},
+    "extensions": [
+      "ms-vscode.vscode-typescript-angular"
+      // Agrega otras extensiones necesarias para tu proyecto
+    ],
+    "postCreateCommand": "npm install"
+  }
+  
