@@ -1,11 +1,14 @@
 {
-    "name": "Angular Development",
-    "dockerFile": "Dockerfile",
-    "settings": {},
-    "extensions": [
-      "ms-vscode.vscode-typescript-angular"
-      // Agrega otras extensiones necesarias para tu proyecto
-    ],
-    "postCreateCommand": "npm install -g @angular/cli",
-    "workbench.colorTheme": "Abyss"
-  }
+  "name": "Angular Codespace",
+  "dockerFile": "Dockerfile",
+  "extensions": [
+    "ms-vscode.node-debug2",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ],
+  "forwardPorts": [4200],
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash"
+  },
+  "postCreateCommand": "npm install -g @angular/cli && ng --version",
+  "workbench.colorTheme": "Abyss"
+}
